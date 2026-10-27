@@ -99,7 +99,7 @@
       max-width: 1600px;
       margin: 0 auto;
       width: 100%;
-      box-sizing: border-border-box;
+      box-sizing: border-box;
     }
 
     @media (max-width: 900px) {
@@ -411,6 +411,15 @@
     let currentMode = 'ixl';
     let selectedTopic = null;
     let hlsPlayer = null;
+    const ixlPlayer = document.getElementById('ixlPlayer');
+    const ytPlayer = document.getElementById('ytPlayer');
+
+    // Save IXL video time continuously
+    ixlPlayer.addEventListener('timeupdate', () => {
+      if (selectedTopic && currentMode === 'ixl') {
+        localStorage.setItem('time_ixl_' + selectedTopic.title, ixlPlayer.currentTime);
+      }
+    });
 
     function buildSidebar() {
       const sidebar = document.getElementById('sidebar');
@@ -465,8 +474,6 @@
     }
 
     function loadMedia() {
-      const ixlPlayer = document.getElementById('ixlPlayer');
-      const ytPlayer = document.getElementById('ytPlayer');
       const placeholder = document.getElementById('placeholder');
       const ytExternalLink = document.getElementById('ytExternalLink');
 
@@ -492,10 +499,18 @@
           hlsPlayer.loadSource(selectedTopic.ixl);
           hlsPlayer.attachMedia(ixlPlayer);
           hlsPlayer.on(Hls.Events.MANIFEST_PARSED, () => {
+            const savedTime = localStorage.getItem('time_ixl_' + selectedTopic.title);
+            if (savedTime) {
+              ixlPlayer.currentTime = parseFloat(savedTime);
+            }
             ixlPlayer.play().catch(() => {});
           });
         } else if (ixlPlayer.canPlayType('application/vnd.apple.mpegurl')) {
           ixlPlayer.src = selectedTopic.ixl;
+          const savedTime = localStorage.getItem('time_ixl_' + selectedTopic.title);
+          if (savedTime) {
+            ixlPlayer.currentTime = parseFloat(savedTime);
+          }
           ixlPlayer.play().catch(() => {});
         }
       } else {
@@ -508,7 +523,7 @@
         ixlPlayer.classList.add('hidden');
         ixlPlayer.removeAttribute('src');
 
-        // Load YouTube Embed cleanly
+        // Load YouTube Embed cleanly with autoplay
         ytPlayer.classList.remove('hidden');
         ytPlayer.src = `https://www.youtube-nocookie.com/embed/${selectedTopic.ytId}?autoplay=1`;
 
