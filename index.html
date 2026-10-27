@@ -12,6 +12,7 @@
       --card-hover: #1e293b;
       --accent: #6366f1;
       --accent-green: #10b981;
+      --accent-green-hover: #059669;
       --text: #f8fafc;
       --text-muted: #94a3b8;
       --border: #334155;
@@ -24,45 +25,50 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
-    body {
+    html, body {
+      height: 100%;
       background-color: var(--bg);
       color: var(--text);
-      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    body {
       display: flex;
       flex-direction: column;
     }
 
     header {
-      padding: 20px;
+      padding: 16px 20px;
       text-align: center;
       border-bottom: 1px solid var(--border);
-      background-color: rgba(20, 27, 45, 0.5);
+      background-color: rgba(20, 27, 45, 0.8);
       backdrop-filter: blur(10px);
+      flex-shrink: 0;
     }
 
     h1 {
-      font-size: 1.5rem;
+      font-size: 1.4rem;
       font-weight: 700;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
 
-    /* Source Selector Bar */
+    /* Mode Selector Toggle */
     .mode-toggle-container {
       display: flex;
       justify-content: center;
       gap: 10px;
-      margin-bottom: 10px;
     }
 
     .mode-btn {
       background: var(--card-bg);
       border: 1px solid var(--border);
       color: var(--text-muted);
-      padding: 10px 20px;
+      padding: 9px 18px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: 600;
-      transition: all 0.3s ease;
+      font-size: 0.9rem;
+      transition: all 0.25s ease;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -72,41 +78,56 @@
       background: var(--accent-green);
       color: white;
       border-color: var(--accent-green);
-      box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
     }
 
     .mode-btn.active#ytBtn {
       background: var(--accent);
       color: white;
       border-color: var(--accent);
-      box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+      box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
     }
 
-    /* Main Layout */
-    .container {
+    /* Container & Responsive Layout */
+    .main-container {
       display: grid;
-      grid-template-columns: 380px 1fr;
+      grid-template-columns: 360px 1fr;
       gap: 20px;
       padding: 20px;
       flex: 1;
+      height: calc(100vh - 100px);
       max-width: 1600px;
       margin: 0 auto;
       width: 100%;
+      box-sizing: border-border-box;
     }
 
     @media (max-width: 900px) {
-      .container {
+      body {
+        overflow: auto;
+      }
+      .main-container {
         grid-template-columns: 1fr;
+        height: auto;
       }
     }
 
-    /* Sidebar Navigation */
+    /* Scrollable Sidebar */
     .sidebar {
       display: flex;
       flex-direction: column;
       gap: 15px;
       overflow-y: auto;
-      max-height: calc(100vh - 140px);
+      padding-right: 6px;
+      height: 100%;
+    }
+
+    .sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .sidebar::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
     }
 
     .unit-card {
@@ -114,17 +135,18 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     .unit-title {
-      padding: 16px;
-      font-weight: 600;
-      background: rgba(255, 255, 255, 0.02);
+      padding: 14px 16px;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.03);
       border-bottom: 1px solid var(--border);
       color: var(--accent);
       text-transform: uppercase;
-      font-size: 0.85rem;
-      letter-spacing: 1px;
+      font-size: 0.8rem;
+      letter-spacing: 1.2px;
     }
 
     .topic-list {
@@ -132,9 +154,9 @@
       flex-direction: column;
     }
 
-    /* Accordion Item Style */
+    /* Accordion Single-Line Topic Items */
     .topic-item {
-      padding: 16px 20px;
+      padding: 14px 18px;
       background: var(--card-bg);
       border-bottom: 1px solid var(--border);
       cursor: pointer;
@@ -144,9 +166,7 @@
       transition: all 0.2s ease;
       color: var(--text);
       font-weight: 500;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: 0.9rem;
     }
 
     .topic-item:last-child {
@@ -165,7 +185,7 @@
 
     .chevron {
       transition: transform 0.3s ease;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
     }
 
@@ -174,7 +194,14 @@
       color: var(--accent);
     }
 
-    /* Player Container */
+    .topic-text {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex: 1;
+    }
+
+    /* Video Player Frame Viewport */
     .viewport {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -182,25 +209,52 @@
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      height: 100%;
     }
 
     .viewport-header {
-      padding: 16px 20px;
+      padding: 14px 20px;
       border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background: rgba(0, 0, 0, 0.2);
     }
 
     .viewport-title {
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .direct-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      text-decoration: none;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid var(--accent);
+      transition: all 0.2s ease;
+    }
+    .direct-link:hover {
+      background: var(--accent);
+      color: white;
     }
 
     .badge {
       font-size: 0.75rem;
-      padding: 4px 8px;
-      border-radius: 4px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 600;
       background: rgba(16, 185, 129, 0.2);
       color: var(--accent-green);
       border: 1px solid var(--accent-green);
@@ -214,20 +268,22 @@
 
     .player-frame {
       width: 100%;
-      height: 100%;
-      min-height: 500px;
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       background: #000;
+      position: relative;
     }
 
     video, iframe {
       width: 100%;
       height: 100%;
-      min-height: 500px;
       border: none;
+    }
+
+    .hidden {
+      display: none !important;
     }
   </style>
 </head>
@@ -245,18 +301,25 @@
     </div>
   </header>
 
-  <div class="container">
-    <!-- Sidebar Navigation -->
+  <div class="main-container">
+    <!-- Scrollable Sidebar -->
     <div class="sidebar" id="sidebar"></div>
 
-    <!-- Content Display Viewport -->
+    <!-- Main Player Display Viewport -->
     <div class="viewport">
       <div class="viewport-header">
         <span class="viewport-title" id="currentTitle">Select a Topic</span>
-        <span class="badge" id="sourceBadge">IXL Video</span>
+        <div class="header-actions">
+          <a id="ytExternalLink" class="direct-link hidden" href="#" target="_blank" rel="noopener noreferrer">
+            Open on YouTube ↗
+          </a>
+          <span class="badge" id="sourceBadge">IXL Video</span>
+        </div>
       </div>
-      <div class="player-frame" id="playerFrame">
-        <div style="color: var(--text-muted);">Please select a topic from the list.</div>
+      <div class="player-frame">
+        <video id="ixlPlayer" controls class="hidden"></video>
+        <iframe id="ytPlayer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="hidden"></iframe>
+        <div id="placeholder" style="color: var(--text-muted);">Please select a topic from the left menu.</div>
       </div>
     </div>
   </div>
@@ -269,22 +332,22 @@
           {
             title: "Add And Subtract Complex Numbers",
             ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_0jmgb267/v/1/ev/4/flavorId/1_zuvkp3r4/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzBqbWdiMjY3L3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyNX19fV19&Signature=RFklOqq2JVlItnzGik7r8qdeZsLpoDzYULS9IbbPiBtWdE4BeCH0FsPe5ZwT9rw3qL8Rx16yAD0bm6KvOguw-F7h0BheSprQI1Eb1pmMkujsgB3AMIp3bIn5fKJKTHMsyXbqKxlaOj-behvebCE31GFBHkUnQt4ybmzycKCMUaAgaLxyoIOwDyJ4D5PRw0e4bi4YXrRzhMkdr~ZfQvU5vg3dcDRvMtVyw2l67SOgLUduzln2LyjQUEYtd03KjxCfmRTvyKJkCi7k-srKXH1kElBf6HUEs4yt9oBTzQcOKOUJeriHADckeJq2cLj6s579jKTrSSHSZ3kPiprmNFkGkg__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
-            youtube: "https://www.youtube.com/embed/fTmA60m31uE"
+            ytId: "qNNX79cnFyQ"
           },
           {
             title: "Multiply Complex Numbers",
             ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_00cs8ya1/v/21/ev/10/flavorId/1_6cezjonh/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzAwY3M4eWExL3YvMjEvZXYvMTAqIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzkzMTkzMTI2fX19XX0_&Signature=YshKPysDR19u3Ng1aUJPTWrayx8iyCa08lpI4EizIrN2Kth18OTngAbgvGRpAdrwNRm0gvj-v4ulP0kI0Sp2wCAU-IEQu68eosPfRBBE36WV3VBOWUES2zyMWVG5~zLBdZPEG53c7BH~A7Re3vcGPiuc9T1-1zoKNoNHYZRXvseVtX1xXRO4806oiEsJ7kyWOQaNBeVv2OhQdtpFtMcXLLydba9eQPT79PoH72joz~oupJDWmpKWDIZAT2w7TNB5tkZQzNf4FHiio2rfIOTE4DhzC~1ySz0JscO9IVdDXvezSFhIizUxLnJju3MlJS-jBjFdoyYfyviNmnwC4aEBUw__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
-            youtube: "https://www.youtube.com/embed/cW-Vj8xT8r8"
+            ytId: "MzCS_8Rzja8"
           },
           {
             title: "Divide Complex Numbers",
             ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_e0qle3s6/v/1/ev/4/flavorId/1_jlzydo42/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX2UwcWxlM3M2L3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyOH19fV19&Signature=KQ4Qswkk1d6S7K~wz9Yg94Tcycd-r4ZwC50H5bR3~xMambSneykhHW3DAtb~mQC4jUD7~-OqFOHgBHFVA2PIk6IULMD25J2tv96dHkp8ytAs8XAshjBbV4dseg3cf8ff0l7h~whqDESpPk9MzHc0qYXMg8~1aPzoqSv3CqXmWl3za7R7WGHmgag8ay7LbIjwu~m8oI3pTK34-WjGP~TdWNrQ37bLqogLYkL-kOROlN0QwjcLmksAXBGAlfEdsHB1u8fA27NAdc5eiPVWmsVk9moU9ZLjUu-LZ~jXqMIiAtpVoZjkQVD5ac3u-xW9I5ltzD7rFgJF1V5-mQ8Adt9ddQ__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
-            youtube: "https://www.youtube.com/embed/K8w3wNl-5Xk"
+            ytId: "EfRRpVB62Ko"
           },
           {
             title: "Powers Of I",
             ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_6syo2k7n/v/1/ev/3/flavorId/1_hrt88ote/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzZzeW8yazduL3YvMS9ldi8zKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEzM319fV19&Signature=TvvDvaazo1~M3bGpKOJzwfuVG9pybS8rvQQ7R7WsviZ8npHd8JYQO8wZ1Lo3Halq2yAO9qkZdgskXfkWRPyN4ghAnahTaBcml0xy63HRQuONllPrCN40TQwDQ3h2o65O8Uo6FPL8L14FtpODptAhqrb6dBXUVfn9aNoAYUR6hFiwNI43RkEfWBvDKdwh36e7CL7Sh-0BviJG87cj5FmCj-6~4TzoKQ9K9Uio9cF1Z1h~9LVC37X4egYjukcJPUzid4bBHTKyOgLfjb5LqwOKAV8lQJcOthCUXDkbzS5WdkxbVL0rw8fDaFFDQtVCNLHP2q~OJwtwzLjEo5Qf8wFuBA__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
-            youtube: "https://www.youtube.com/embed/8F20_5c8cns"
+            ytId: "yNgLEKbJMr4"
           }
         ]
       },
@@ -294,27 +357,27 @@
           {
             title: "Solve A Quadratic Equation Using Square Roots",
             ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_70pd9vhf/v/1/ev/4/flavorId/1_qzikvsdi/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzcwcGQ5dmhmL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyNn19fV19&Signature=eAWAnYqEDT7~mW5my4bWPuyPkNyYojXkHn0p90joW8B-Brl7yo9ICyEs~GKX~107pksT4RRRPBScmSZFgu3rYNmpNgtKxnhT6dOVTdoEQOo07exf4vQZwl5mEfEmK27WiqkyDIroOjgYY95Vs~keBD6JIF~zTon7KrnJiKKnm~qNjNxOcyA~CajPZ2GnyFa57lnYZn09ryMup-UjWHI2JSHw~ZLhEf9h8BO~j94UTbEW9InviPJNAoR7AitOp06iomNZkV6RtMrJlNdbjocmg8a5x61IKDc2aJI3zveit959KcKpyGhEicAUs0kk8yr3nXHczp9vORo6~7Ik24P6Wg__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
-            youtube: "https://www.youtube.com/embed/RM6_dK19eE0"
+            ytId: "4sy4UomdpQg"
           },
           {
             title: "Solve A Quadratic Equation By Factoring",
             ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_ftzc8lve/v/1/ev/4/flavorId/1_n3aata78/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX2Z0emM4bHZlL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyOX19fV19&Signature=DkYPtv1njaOhGoSUhAnNayCGbwMNlF6vmx6beoPUiQCQRQBCudyn2RWcdFO8nli42bDZiGtKpcvFuKzO~ZQ1l4fV-mOICh9~rYu9E-~WItymzv9iBiO8QHqSpv-yZCXD80W2fsgDHama1snCa05Hbk96shBvQURVZR2lQLwQuQ-LLef5e2lRIZ6wgIiUmTBODOJrjIxpseVtRF9FyXQkLL3IyR0AKiqAq7PwsknhZ9ozZaiC201NYlod0ixNqxbZc833EYBwEGJjQssH1bQNkm2kuMBNpSpKxvD-LW1nYg61gKwPSyJTVFutsRdvz9JUxv2bovkBj17-HiSWlVnfLw__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
-            youtube: "https://www.youtube.com/embed/Zbal9Zg_caw"
+            ytId: "qeByhTF8WEw"
           },
           {
             title: "Solve A Quadratic Equation By Completing The Square",
             ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_j01p5at8/v/1/ev/4/flavorId/1_6qfisg3b/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX2owMXA1YXQ4L3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyNn19fV19&Signature=PfF4uiLS2SjfcJc25LAWjcWqgeBTreo7u8BjC4t5RxGh44Cv9WWuTNhPFWCuL4soJTl88gw2pD2huV36smWgfDHdzKRAFyJ3ne37WJQcSHKuYf0DFuVTlAJtVkLPV6TqU6sIMF24LTLneSBya9w6PRTUOI-IkvKVhJ5n6pIISIKmONB2rpPejoEwRTyckwzQvC-r9lL6tttT~y2K0vjcev2pbYg4mWT1LYZcXG5XM5SlPZZWwpmJgjBmkcSe~qJ62Pn17llWBRICOJsZLwKJ1eNb9iNz4quQpnsXNF9CUGf2ZIrajRgTmAb83nnGVdRZW7krEyin~Wvs9~mGR1uDGg__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
-            youtube: "https://www.youtube.com/embed/prx_Bf27wAo"
+            ytId: "2MKigAgPZMQ"
           },
           {
             title: "Solve A Quadratic Equation Using The Quadratic Formula",
             ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_yhtjwhnb/v/1/ev/4/flavorId/1_uf9h2vhi/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX3lodGp3aG5iL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyOH19fV19&Signature=JThsEeypmgcy3jqmIyJ1rv07qxlgXMC47j6QeICbtU7BYgraa7w~O8lecXwhUQB59jCo-g0PDPPJU7ZLJoPV~KfZp-iroEPwzdDBByt6c8c3yIbgVXhu6bgCz2wvk6Y6E0pfScNIKvwl5qKAtmjTi3wuvzFWjaXUrE1qN8gKU8mQ9yExnMtbK3B8FfKeka8oDqzt92doGgnLpeEzb84xGfm-JmiZcVK7x4aXl96N9rHdg0XyDMfPdUCkP6MJfir6JmH5kmO90nu9DyX1lBD1gDQjzhousXNUnElF1YdwBrcQxscNpOGOsevyeh5TRe99fgm235lePcIE7AiwtiPs3A__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
-            youtube: "https://www.youtube.com/embed/i7idZfS8t8w"
+            ytId: "IlNAJl36-10"
           },
           {
             title: "Using The Discriminant",
             ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_lt3nq4jv/v/1/ev/4/flavorId/1_vy5mutu3/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX2x0M25xNGp2L3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEzM319fV19&Signature=OQk9GNVW9iDAfxm0SoS9RypI9wTft90RShL-y99xILs~zxoWjfUeiRzaqQQEh4tDNYHROXRRwbXMaSqocnzgyrCAh~ss8PjCxSzAWVMlO8aTYSYDbdN8laJ2XUYypGIo0bt1OSxQ-s8q6u-bueLGapqzfnFlqSnsZ5ATHPBn8ZO5lzUYoiHd~5mxBbXCAULaW3SGn6Cp3ET3txU0~DltlLvyeS04KRbRhzEFhudpZAJ6QO52X69QJchJ4Yzu-rOQ3GtZZu4XkIENgZwWB6ptHQ2nQ6gG3KF~7gk4bY-cus4H2G-EBOmo3M8i~XlDkzm7eHeDfaq~mH7G669l~ywS4w__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
-            youtube: "https://www.youtube.com/embed/JBhW3zcm03U"
+            ytId: "JBhW3zcm03U"
           }
         ]
       },
@@ -324,22 +387,22 @@
           {
             title: "Solve A Linear Quadratic System Of Equations Lines And Parabolas",
             ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_oy8pq2cb/v/1/ev/4/flavorId/1_3yfn66bf/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX295OHBxMmNiL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyNn19fV19&Signature=JlN4jJRuF9yaKBySQ2o5Pd0BTVTs8QIuFgJFy7KVxGKPVcUSNjvtRtLVQ7G1psCIYDbbb2aEIl9p4r1VfnFyMg3Zp0J5irjn0ugiaKxZACWnz0jhTuCB~toGdyYCCbOKSapeksMYBbcE8-b33~8HeTQ5epiJ4yI8NVFfFbFdfFgW969EzMIHRJRY11gHG6NfbYjKtfAu7qpUdlUJNFIGazgGs~0Qziyla7IBpdU~fJcfWhZn1inwk7YTRO81geKfXDgj0ve26FuYFBNRT3saf5pegemQKCha4wkilXNufXG6nOj8viik22yeh9eMSJtiKs3auxz14s~pxraZp1nnZw__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
-            youtube: "https://www.youtube.com/embed/a7jXjQp3v30"
+            ytId: "rq5AjFs95qw"
           },
           {
             title: "Solve A Linear Quadratic System Of Equations By Graphing Lines And Parabolas",
             ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_84urvlxi/v/1/ev/4/flavorId/1_nf4zmxb3/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzg0dXJ2bHhpL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyNn19fV19&Signature=D5efRDI10BM0hhBdHYUorWwyVmzPrurN9zlHDdzwpG4IkIjOrg0c8PNIgDgMk1T9W9IBISMBEvqEyc4-0swIC7GbDOG0l7CC4ZaF5zDpZIPE9C1aUHIl5ion1uUQXndMVyRpsBdHXDhYeYqne9QD70WxXKm6MlVgAOGA3kpGxplfRVbvV~MgDKCiw84xv31puJeeJK6G3xZIHmAKvCpug7LQGsRrGyOjqZFprV8JiB3OotexsvoIXYT~8LfCGoq0qem92lcuRDgU838JpGRvyk3qTiG2q9Y3eKVpuJpwLycETFkHoGl4Hsf4IYp8VJYGeCcrfUMJCofUkKjBhRU~Ng__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
-            youtube: "https://www.youtube.com/embed/hqb_0Y_O8u4"
+            ytId: "kqIhCU2zZ8A"
           },
           {
             title: "Rational Root Theorem",
             ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_3t3az2hc/v/1/ev/4/flavorId/1_6f0swk73/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzN0M2F6MmhjL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyNH19fV19&Signature=D7c~E9K1xZKqOI1KRNQyjsomH2hk3qKlVPyVOCKDjeM-Todfv9cWM5YDzxp15VM2Ivn6jU0eSClkFbdnCd1CvKVetLxto-w1TXvao3cchlpz5gHiHkd1uxdv8pUmTLG885S0MFPA~XuHWA-LGulhH0n5MlfM25jZZT2ykePnFBHPxZr3Bd~igT87XVTkYumP31BnaUTuaF6Nvd2gP~YriaQKNQnH3B82ErC-YKZIng2ivhdd4WjIjSN9PLTEVmNqy9Nwoq0F1shVCKbQY-dVRoYrWQP3CMX2NFqu-j74X2gU2JbMbwF-QL0dDDB9LdjU94sE~y4p0~pDHty8~9ffwQ__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
-            youtube: "https://www.youtube.com/embed/Rk5_ZJtFsm0"
+            ytId: "Iaq7z7reznM"
           },
           {
             title: "Find Inverse Functions And Relations",
             ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_48btprmr/v/1/ev/4/flavorId/1_8yc32ys4/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzQ4YnRwcm1yL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyMX19fV19&Signature=ZAXZhzQmXzQTmYYZryoP13rASXpsl0PYxkRLX5dr8TcEPwq2g1LvovV94FS9Ov3u9XG3eXeaN7aY2pj5hhl0uHZFowqSmLwMQSV7WuyZmel7BIE-HzG-D~tgOnL8Btj6Pm~eh73~5mSI2T6SUylCR-Z7Wf5Nh0lgHN13T9XcdvVk1wm4cb0bs9dGFYkZPS17mnY8bjR1L0BTxxA3PT~zT1Y7ASmKk1uisCI2Fq8Q~H3samOA~geQOiqHyedZAkC9WcvVeR9mo3GazD72mXXDD-1GPhhVw97RgaJ6eVVRMvgAr-DBJkbnfwD39JKoBsvDpKTqUEgSBRoyGdXP5B1T~Q__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
-            youtube: "https://www.youtube.com/embed/W84lObmK48I"
+            ytId: "W84lObmK48I"
           }
         ]
       }
@@ -347,6 +410,7 @@
 
     let currentMode = 'ixl';
     let selectedTopic = null;
+    let hlsPlayer = null;
 
     function buildSidebar() {
       const sidebar = document.getElementById('sidebar');
@@ -367,7 +431,7 @@
         mod.topics.forEach((top) => {
           const item = document.createElement('div');
           item.className = 'topic-item';
-          item.innerHTML = `<span class="chevron">&gt;</span> <span style="overflow:hidden;text-overflow:ellipsis;">${top.title}</span>`;
+          item.innerHTML = `<span class="chevron">&gt;</span><span class="topic-text">${top.title}</span>`;
           item.onclick = () => selectTopic(top, item);
           list.appendChild(item);
         });
@@ -383,7 +447,7 @@
       selectedTopic = topic;
       
       document.getElementById('currentTitle').innerText = topic.title;
-      renderPlayer();
+      loadMedia();
     }
 
     function setMode(mode) {
@@ -396,40 +460,67 @@
       sourceBadge.className = mode === 'ixl' ? 'badge' : 'badge yt';
       
       if (selectedTopic) {
-        renderPlayer();
+        loadMedia();
       }
     }
 
-    function renderPlayer() {
-      const container = document.getElementById('playerFrame');
-      container.innerHTML = '';
+    function loadMedia() {
+      const ixlPlayer = document.getElementById('ixlPlayer');
+      const ytPlayer = document.getElementById('ytPlayer');
+      const placeholder = document.getElementById('placeholder');
+      const ytExternalLink = document.getElementById('ytExternalLink');
+
+      placeholder.classList.add('hidden');
 
       if (!selectedTopic) return;
 
       if (currentMode === 'ixl') {
-        const video = document.createElement('video');
-        video.controls = true;
-        video.autoplay = true;
+        // Hide YouTube player
+        ytPlayer.classList.add('hidden');
+        ytPlayer.src = '';
+        ytExternalLink.classList.add('hidden');
+
+        // Load IXL HLS Video Stream
+        ixlPlayer.classList.remove('hidden');
+
+        if (hlsPlayer) {
+          hlsPlayer.destroy();
+        }
 
         if (Hls.isSupported()) {
-          const hls = new Hls();
-          hls.loadSource(selectedTopic.ixl);
-          hls.attachMedia(video);
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-          video.src = selectedTopic.ixl;
+          hlsPlayer = new Hls();
+          hlsPlayer.loadSource(selectedTopic.ixl);
+          hlsPlayer.attachMedia(ixlPlayer);
+          hlsPlayer.on(Hls.Events.MANIFEST_PARSED, () => {
+            ixlPlayer.play().catch(() => {});
+          });
+        } else if (ixlPlayer.canPlayType('application/vnd.apple.mpegurl')) {
+          ixlPlayer.src = selectedTopic.ixl;
+          ixlPlayer.play().catch(() => {});
         }
-        container.appendChild(video);
       } else {
-        const iframe = document.createElement('iframe');
-        iframe.src = selectedTopic.youtube;
-        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-        iframe.allowFullscreen = true;
-        container.appendChild(iframe);
+        // Stop IXL video player
+        if (hlsPlayer) {
+          hlsPlayer.destroy();
+          hlsPlayer = null;
+        }
+        ixlPlayer.pause();
+        ixlPlayer.classList.add('hidden');
+        ixlPlayer.removeAttribute('src');
+
+        // Load YouTube Embed cleanly
+        ytPlayer.classList.remove('hidden');
+        ytPlayer.src = `https://www.youtube-nocookie.com/embed/${selectedTopic.ytId}?autoplay=1`;
+
+        // Direct watch link fallback
+        ytExternalLink.href = `https://www.youtube.com/watch?v=${selectedTopic.ytId}`;
+        ytExternalLink.classList.remove('hidden');
       }
     }
 
     buildSidebar();
     
+    // Auto-select first item
     const firstTopic = modules[0].topics[0];
     const firstElement = document.querySelector('.topic-item');
     if (firstTopic && firstElement) {
