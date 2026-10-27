@@ -11,7 +11,7 @@
       --card-bg: #141b2d;
       --card-hover: #1e293b;
       --accent: #6366f1;
-      --accent-hover: #4f46e5;
+      --accent-green: #10b981;
       --text: #f8fafc;
       --text-muted: #94a3b8;
       --border: #334155;
@@ -68,7 +68,14 @@
       gap: 8px;
     }
 
-    .mode-btn.active {
+    .mode-btn.active#ixlBtn {
+      background: var(--accent-green);
+      color: white;
+      border-color: var(--accent-green);
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+    }
+
+    .mode-btn.active#ytBtn {
       background: var(--accent);
       color: white;
       border-color: var(--accent);
@@ -125,7 +132,7 @@
       flex-direction: column;
     }
 
-    /* Accordion Item Style matching original image */
+    /* Accordion Item Style */
     .topic-item {
       padding: 16px 20px;
       background: var(--card-bg);
@@ -194,9 +201,15 @@
       font-size: 0.75rem;
       padding: 4px 8px;
       border-radius: 4px;
+      background: rgba(16, 185, 129, 0.2);
+      color: var(--accent-green);
+      border: 1px solid var(--accent-green);
+    }
+
+    .badge.yt {
       background: rgba(99, 102, 241, 0.2);
       color: var(--accent);
-      border: 1px solid var(--accent);
+      border-color: var(--accent);
     }
 
     .player-frame {
@@ -224,7 +237,7 @@
     <h1>Math Learning Portal</h1>
     <div class="mode-toggle-container">
       <button class="mode-btn active" id="ixlBtn" onclick="setMode('ixl')">
-        🎬 IXL Official Video
+        IXL Video
       </button>
       <button class="mode-btn" id="ytBtn" onclick="setMode('youtube')">
         ▶ YouTube Lesson
@@ -249,7 +262,6 @@
   </div>
 
   <script>
-    // Full Data Structure with both IXL Video Stream URLs and Curated YouTube Videos
     const modules = [
       {
         unit: "Complex Numbers",
@@ -336,7 +348,6 @@
     let currentMode = 'ixl';
     let selectedTopic = null;
 
-    // Build Navigation Sidebar
     function buildSidebar() {
       const sidebar = document.getElementById('sidebar');
       sidebar.innerHTML = '';
@@ -366,7 +377,6 @@
       });
     }
 
-    // Handle Selection & Mode Switch
     function selectTopic(topic, element) {
       document.querySelectorAll('.topic-item').forEach(el => el.classList.remove('active'));
       element.classList.add('active');
@@ -380,7 +390,10 @@
       currentMode = mode;
       document.getElementById('ixlBtn').classList.toggle('active', mode === 'ixl');
       document.getElementById('ytBtn').classList.toggle('active', mode === 'youtube');
-      document.getElementById('sourceBadge').innerText = mode === 'ixl' ? 'IXL Video' : 'YouTube Video';
+      
+      const sourceBadge = document.getElementById('sourceBadge');
+      sourceBadge.innerText = mode === 'ixl' ? 'IXL Video' : 'YouTube Video';
+      sourceBadge.className = mode === 'ixl' ? 'badge' : 'badge yt';
       
       if (selectedTopic) {
         renderPlayer();
@@ -415,10 +428,8 @@
       }
     }
 
-    // Initialize App
     buildSidebar();
     
-    // Auto-select first item
     const firstTopic = modules[0].topics[0];
     const firstElement = document.querySelector('.topic-item');
     if (firstTopic && firstElement) {
