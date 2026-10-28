@@ -52,7 +52,7 @@
       margin-bottom: 8px;
     }
 
-    /* Top Mode Toggle Bar */
+    /* Mode Toggle Controls */
     .mode-toggle-container {
       display: flex;
       justify-content: center;
@@ -88,14 +88,14 @@
       box-shadow: 0 0 12px rgba(99, 102, 241, 0.4);
     }
 
-    /* Layout - Auto Adapts to Any Screen/Window Size */
+    /* Main Fluid Container */
     .main-container {
       display: grid;
       grid-template-columns: 340px 1fr;
       gap: 16px;
       padding: 16px;
       flex: 1;
-      min-height: 0; /* Prevents overflow clipping when window is not maximized */
+      min-height: 0;
       width: 100%;
       max-width: 1600px;
       margin: 0 auto;
@@ -111,7 +111,7 @@
       }
     }
 
-    /* Scrollable Sidebar Navigation */
+    /* Scrollable Sidebar */
     .sidebar {
       display: flex;
       flex-direction: column;
@@ -154,7 +154,6 @@
       flex-direction: column;
     }
 
-    /* Accordion Topic Items */
     .topic-item {
       padding: 12px 16px;
       background: var(--card-bg);
@@ -201,7 +200,7 @@
       flex: 1;
     }
 
-    /* Viewport Frame */
+    /* Player Viewport */
     .viewport {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -339,22 +338,22 @@
         topics: [
           {
             title: "Add And Subtract Complex Numbers",
-            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_0jmgb267/v/1/ev/4/flavorId/1_zuvkp3r4/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzBqbWdiMjY3L3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyNX19fV19&Signature=RFklOqq2JVlItnzGik7r8qdeZsLpoDzYULS9IbbPiBtWdE4BeCH0FsPe5ZwT9rw3qL8Rx16yAD0bm6KvOguw-F7h0BheSprQI1Eb1pmMkujsgB3AMIp3bIn5fKJKTHMsyXbqKxlaOj-behvebCE31GFBHkUnQt4ybmzycKCMUaAgaLxyoIOwDyJ4D5PRw0e4bi4YXrRzhMkdr~ZfQvU5vg3dcDRvMtVyw2l67SOgLUduzln2LyjQUEYtd03KjxCfmRTvyKJkCi7k-srKXH1kElBf6HUEs4yt9oBTzQcOKOUJeriHADckeJq2cLj6s579jKTrSSHSZ3kPiprmNFkGkg__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
+            ixl: "https://cdnapisec.kaltura.com/p/4764982/sp/476498200/playManifest/entryId/1_0jmgb267/protocol/https/format/applehttp/flavorIds/1_rxnotj2s,1_zuvkp3r4/ks/djJ8NDc2NDk4Mnx4lLbrPxY9urYxlduyzO4-AZw5n504H1wUmgtGslEQA38QsGdFtwv0ue8fbtMsGjsXlywLO1G9-x-oEgj1ov2vkj2IUU_B_R2ic3IS2YtQlw==/a.m3u8?uiConfId=55021122&playSessionId=f18c67d6-0579-fd09-2612-c3f5120144fe:db17fb7f-657e-5986-2523-7db69b5c47af&referrer=aHR0cHM6Ly93d3cuaXhsLmNvbS9tYXRoL2FsZ2VicmEtMi9hZGQtYW5kLXN1YnRyYWN0LWNvbXBsZXgtbnVtYmVycw==&clientTag=html5:v7.283",
             ytId: "qNNX79cnFyQ"
           },
           {
             title: "Multiply Complex Numbers",
-            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_00cs8ya1/v/21/ev/10/flavorId/1_6cezjonh/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzAwY3M4eWExL3YvMjEvZXYvMTAqIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzkzMTkzMTI2fX19XX0_&Signature=YshKPysDR19u3Ng1aUJPTWrayx8iyCa08lpI4EizIrN2Kth18OTngAbgvGRpAdrwNRm0gvj-v4ulP0kI0Sp2wCAU-IEQu68eosPfRBBE36WV3VBOWUES2zyMWVG5~zLBdZPEG53c7BH~A7Re3vcGPiuc9T1-1zoKNoNHYZRXvseVtX1xXRO4806oiEsJ7kyWOQaNBeVv2OhQdtpFtMcXLLydba9eQPT79PoH72joz~oupJDWmpKWDIZAT2w7TNB5tkZQzNf4FHiio2rfIOTE4DhzC~1ySz0JscO9IVdDXvezSFhIizUxLnJju3MlJS-jBjFdoyYfyviNmnwC4aEBUw__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
+            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_00cs8ya1/v/21/ev/10/flavorId/1_gs38nkxy/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzAwY3M4eWExL3YvMjEvZXYvMTAqIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzkzMjk3ODI0fX19XX0_&Signature=bAkVHhd2wK206PT5UogTpoLOyF4~uYa2ElTd5BmVO7deqdv-c1~Tou-DnUt2S5XbmnBR1foG7XVnU79de2qLzDbf~Au1KRrKDIPvhMhceD5KFKxtAfBeqLyETi6qFQLJrgYYd-VKCuK32tENWb5ULWJt29ZefzHt8BQo3R6KXNf62xl1fhRRAR85IL~VLP4BEyiMii6x-EHg5QfmOUY94tJyPRRwcAtMYkofk7tdp6PVqIBtpbJz67N69CYvYLn~19AltY8yx4oY2T6tHtLvUPPscl558vkFkAaturTtayyowE1pPyxAYUKV5r42BddjAOp3pqGagdM1fMmqc0rVaw__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
             ytId: "MzCS_8Rzja8"
           },
           {
             title: "Divide Complex Numbers",
-            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_e0qle3s6/v/1/ev/4/flavorId/1_jlzydo42/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX2UwcWxlM3M2L3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyOH19fV19&Signature=KQ4Qswkk1d6S7K~wz9Yg94Tcycd-r4ZwC50H5bR3~xMambSneykhHW3DAtb~mQC4jUD7~-OqFOHgBHFVA2PIk6IULMD25J2tv96dHkp8ytAs8XAshjBbV4dseg3cf8ff0l7h~whqDESpPk9MzHc0qYXMg8~1aPzoqSv3CqXmWl3za7R7WGHmgag8ay7LbIjwu~m8oI3pTK34-WjGP~TdWNrQ37bLqogLYkL-kOROlN0QwjcLmksAXBGAlfEdsHB1u8fA27NAdc5eiPVWmsVk9moU9ZLjUu-LZ~jXqMIiAtpVoZjkQVD5ac3u-xW9I5ltzD7rFgJF1V5-mQ8Adt9ddQ__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
+            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_e0qle3s6/v/1/ev/4/flavorId/1_ucdd8ugz/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX2UwcWxlM3M2L3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzI5NzgyMX19fV19&Signature=avH7Vu-gR4rl1WqHyG~2BhojgUgsTslOi09~-qkrQjx6zWnEj7eoPRc99MhP-3CFSUlR9~zyDncnkUv0LeXHdz1KB2jO04-79oeTKLfJAs3Ahyz2-J7pFkTDmjgrMeQauArbddKoJLVsIuJbqQ7nbZJQyxv-hRSj6a5em8MZTEZoAbY0QeXI-JbXN2l6Q9TNVW9hz4quo6I4lxZWV6TLZamzTzXeTjcNpp-UZEMdk-MwQWf9JZTJ4f~pQk69-neJ1TnnkKO1R-aUn9-j3uvT5k4KaKlRnMFv6Nk9avVH9cbwzd33uEw~CJLHZ5oDKZP8M8gFc4xvn2Q2fQMTPF-agA__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
             ytId: "EfRRpVB62Ko"
           },
           {
             title: "Powers Of I",
-            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_6syo2k7n/v/1/ev/3/flavorId/1_hrt88ote/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzZzeW8yazduL3YvMS9ldi8zKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEzM319fV19&Signature=TvvDvaazo1~M3bGpKOJzwfuVG9pybS8rvQQ7R7WsviZ8npHd8JYQO8wZ1Lo3Halq2yAO9qkZdgskXfkWRPyN4ghAnahTaBcml0xy63HRQuONllPrCN40TQwDQ3h2o65O8Uo6FPL8L14FtpODptAhqrb6dBXUVfn9aNoAYUR6hFiwNI43RkEfWBvDKdwh36e7CL7Sh-0BviJG87cj5FmCj-6~4TzoKQ9K9Uio9cF1Z1h~9LVC37X4egYjukcJPUzid4bBHTKyOgLfjb5LqwOKAV8lQJcOthCUXDkbzS5WdkxbVL0rw8fDaFFDQtVCNLHP2q~OJwtwzLjEo5Qf8wFuBA__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
+            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_6syo2k7n/v/1/ev/3/flavorId/1_hrt88ote/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzZzeW8yazduL3YvMS9ldi8zKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzI5NzgyNX19fV19&Signature=VS942WI5YctFvjIcuMN8FZX~iLhcSfacJUQk9PaPAyVs2gS-HOb61F2Z8rCNjNyTVXDUXzj6ALd0WXxDK32b27DXygOUx2mFx5bTrIGtbj4R19hifRO9X1szUkrJdcif~Iv1I6z~YoXZZoq1Zk1Wm~EQZgYRV3l0k8wesTXykOS8TkoMrlT09ip~5DAt-1LTUJsXBEljDvKfZ~A1f-OvCCJTDlRSvtjC5o2abkqt~8vgrhU2r2-rm4x3c0fXDOmKuHAlD4nSvpVb8dN-wUZRIH62wAlLk3APuAMv4F9eqUOXmcxN~VoYM9s3gY-6TuPBiEqTvULlRfwGl9Ve3qh9ag__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
             ytId: "yNgLEKbJMr4"
           }
         ]
@@ -364,27 +363,27 @@
         topics: [
           {
             title: "Solve A Quadratic Equation Using Square Roots",
-            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_70pd9vhf/v/1/ev/4/flavorId/1_qzikvsdi/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzcwcGQ5dmhmL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyNn19fV19&Signature=eAWAnYqEDT7~mW5my4bWPuyPkNyYojXkHn0p90joW8B-Brl7yo9ICyEs~GKX~107pksT4RRRPBScmSZFgu3rYNmpNgtKxnhT6dOVTdoEQOo07exf4vQZwl5mEfEmK27WiqkyDIroOjgYY95Vs~keBD6JIF~zTon7KrnJiKKnm~qNjNxOcyA~CajPZ2GnyFa57lnYZn09ryMup-UjWHI2JSHw~ZLhEf9h8BO~j94UTbEW9InviPJNAoR7AitOp06iomNZkV6RtMrJlNdbjocmg8a5x61IKDc2aJI3zveit959KcKpyGhEicAUs0kk8yr3nXHczp9vORo6~7Ik24P6Wg__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
+            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_70pd9vhf/v/1/ev/4/flavorId/1_qzikvsdi/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzcwcGQ5dmhmL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzI5NzgyNX19fV19&Signature=Qc4dPemtuRnWKEOqOQoPFbnYTeQ-ltvk2EdRwdSGJ5Jw0guydqjQkUHv0CSoA65b~H-er6~unBx6rjiB86DuweFndH8Co6X7gJRcKIDcu7yhF3AAL6IlvhJ1mtrG~rHH80KqSrcR9xCAH~CJszhyUN8~FAMcS2bS4tbO7WOk5Hz7LLr2X-vPnwK6Wr9wpQHJDYomVbsab~mJKOs3-bJh7m4jM5Feou4yGdx0vOMd9P~Xjdg~1jwj6I6q9Dl4I-yq~Kw9o8cAan1Dzw0yS9X~rwSlNCXpqCMr-VYb6AnDRX5Q7j1tEIASH7DkrqdoBheXFj7cMFqVhC23lp78uOl1pA__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
             ytId: "4sy4UomdpQg"
           },
           {
             title: "Solve A Quadratic Equation By Factoring",
-            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_ftzc8lve/v/1/ev/4/flavorId/1_n3aata78/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX2Z0emM4bHZlL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyOX19fV19&Signature=DkYPtv1njaOhGoSUhAnNayCGbwMNlF6vmx6beoPUiQCQRQBCudyn2RWcdFO8nli42bDZiGtKpcvFuKzO~ZQ1l4fV-mOICh9~rYu9E-~WItymzv9iBiO8QHqSpv-yZCXD80W2fsgDHama1snCa05Hbk96shBvQURVZR2lQLwQuQ-LLef5e2lRIZ6wgIiUmTBODOJrjIxpseVtRF9FyXQkLL3IyR0AKiqAq7PwsknhZ9ozZaiC201NYlod0ixNqxbZc833EYBwEGJjQssH1bQNkm2kuMBNpSpKxvD-LW1nYg61gKwPSyJTVFutsRdvz9JUxv2bovkBj17-HiSWlVnfLw__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
+            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_ftzc8lve/v/1/ev/4/flavorId/1_n3aata78/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX2Z0emM4bHZlL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzI5NzgyNH19fV19&Signature=KHwK9FH~RSAkSV9oYGVzUgSivNZoMK7WIBF9Za5uTmCTG6iiaqlWFRjeMRKNB5jGG7J6b5Go1c7z5fQGGuOT8tZ0KQcSP1ixNar0oZOdCE3wjLUToT5PfewATl4IpMy-Rm8e6MUrbUuc-QnZlUZrNP-zLolSjgzg4ye13AnvK2Wn5mDOzY7ZhvvsmGg3n-w9IlCz8Q0QidX~D6-oERGjdvNPm5rixrqjyg7v8yJpBof7ljE8CGs1jQkGeJXDBkaLKySh4gpiP67OdSwFVVM~M-EjKfzoqP7ES1k2PlIVutWCJ-XcA1I~vI3mf-pNq-WNCKv8we7PeOocBiL8vbschg__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
             ytId: "qeByhTF8WEw"
           },
           {
             title: "Solve A Quadratic Equation By Completing The Square",
-            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_j01p5at8/v/1/ev/4/flavorId/1_6qfisg3b/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX2owMXA1YXQ4L3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyNn19fV19&Signature=PfF4uiLS2SjfcJc25LAWjcWqgeBTreo7u8BjC4t5RxGh44Cv9WWuTNhPFWCuL4soJTl88gw2pD2huV36smWgfDHdzKRAFyJ3ne37WJQcSHKuYf0DFuVTlAJtVkLPV6TqU6sIMF24LTLneSBya9w6PRTUOI-IkvKVhJ5n6pIISIKmONB2rpPejoEwRTyckwzQvC-r9lL6tttT~y2K0vjcev2pbYg4mWT1LYZcXG5XM5SlPZZWwpmJgjBmkcSe~qJ62Pn17llWBRICOJsZLwKJ1eNb9iNz4quQpnsXNF9CUGf2ZIrajRgTmAb83nnGVdRZW7krEyin~Wvs9~mGR1uDGg__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
+            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_j01p5at8/v/1/ev/4/flavorId/1_bcv2ewp6/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX2owMXA1YXQ4L3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzI5NzgyM319fV19&Signature=ZYNgNyjyPK0dmKK4Uxo6LpHKTDoOf~wdLFOcncEUr6BMwFCdZG-XEFbO0LdNZd8HaRump9Eq569ca~2n9jraV6L277cKs7yANbxuvRUPxYoEavB0VvSpHDO2jdnLUxy24GeV5AvdFzVyr3tWVuErh9~vmy53~rCs9YRcF9z1QPYLMm620ePRAm33RTd7mDWnkS1K-uk2eXXMx4WnyEm~mcH~3~MvlZKkOZHc2Si00OAMvy6F9jidG8FJ~yTX27DgNmo-zFxfBxloAb2PQ2mza~FCT789oJbP2OEOxgFGrcibfiTLlPhLEJKTbqNlaRH8aRCaZWlbzp0pcpcADimJnA__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
             ytId: "2MKigAgPZMQ"
           },
           {
             title: "Solve A Quadratic Equation Using The Quadratic Formula",
-            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_yhtjwhnb/v/1/ev/4/flavorId/1_uf9h2vhi/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX3lodGp3aG5iL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyOH19fV19&Signature=JThsEeypmgcy3jqmIyJ1rv07qxlgXMC47j6QeICbtU7BYgraa7w~O8lecXwhUQB59jCo-g0PDPPJU7ZLJoPV~KfZp-iroEPwzdDBByt6c8c3yIbgVXhu6bgCz2wvk6Y6E0pfScNIKvwl5qKAtmjTi3wuvzFWjaXUrE1qN8gKU8mQ9yExnMtbK3B8FfKeka8oDqzt92doGgnLpeEzb84xGfm-JmiZcVK7x4aXl96N9rHdg0XyDMfPdUCkP6MJfir6JmH5kmO90nu9DyX1lBD1gDQjzhousXNUnElF1YdwBrcQxscNpOGOsevyeh5TRe99fgm235lePcIE7AiwtiPs3A__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
+            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_yhtjwhnb/v/1/ev/4/flavorId/1_uf9h2vhi/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX3lodGp3aG5iL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzI5NzgxOX19fV19&Signature=IuFjJXiCcO2w0UgA9N0h2TYADoEY5PQE6CkjTUNHdUbaoyDUmqIWMhAVcofJ1OgUkx~yP5C64W5HGaBa94JCZMwJAvDrJNQ0YswHthtrtsoLiHP1iFogjFT1fMLros96Zp5H7E9swMZ7~nQiVEYKtrDIBpICxGSC~yjWYHVs1l-M~jpWZteSiME9dDXzmwjQOXzkyf9vvlsrNh4pP3PooQmHB~WDYHkcz7nBT4JpBDDiWLch-6BPS~3k58jKZvwueyZzXGsZ-3xBNkVz3nIQHolfDCj8lPvt6HThkUxaRxRI-mGwlToPPEYdeCNWSMq4rTaVOneTCGgohZYUvSMGmg__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
             ytId: "IlNAJl36-10"
           },
           {
             title: "Using The Discriminant",
-            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_lt3nq4jv/v/1/ev/4/flavorId/1_vy5mutu3/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX2x0M25xNGp2L3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEzM319fV19&Signature=OQk9GNVW9iDAfxm0SoS9RypI9wTft90RShL-y99xILs~zxoWjfUeiRzaqQQEh4tDNYHROXRRwbXMaSqocnzgyrCAh~ss8PjCxSzAWVMlO8aTYSYDbdN8laJ2XUYypGIo0bt1OSxQ-s8q6u-bueLGapqzfnFlqSnsZ5ATHPBn8ZO5lzUYoiHd~5mxBbXCAULaW3SGn6Cp3ET3txU0~DltlLvyeS04KRbRhzEFhudpZAJ6QO52X69QJchJ4Yzu-rOQ3GtZZu4XkIENgZwWB6ptHQ2nQ6gG3KF~7gk4bY-cus4H2G-EBOmo3M8i~XlDkzm7eHeDfaq~mH7G669l~ywS4w__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
+            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_lt3nq4jv/v/1/ev/4/flavorId/1_vy5mutu3/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX2x0M25xNGp2L3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzI5NzgyM319fV19&Signature=DPs8fy6zdfCRlTsAzl3-NMRIANbHTGfkQGP-ZYGOsT3XYvZaYKqgE~sNodsfap9keNqdlTELzg6cSbfDvul5ISpvkP45Y6zwCJ0JZnPxbLSCOOLSZaBLkW-EgdZN4EewhKxCS7hi1rR7Z2io5c0SJyW9t~pBW-Ic2O7d6-GeKSO9bPJOPs5klTKoIPuEdUcbOF2btox0TNuKPGclJHl7YttVQVFnav61Vnv6vTbZOn8rvD29EZeQqFbSjkgDzs2O1XRCYYM~g4DMzC7VqvEz2BZ6HCChJDwdVTJfDZbISfHmrrZz8rbbt3GIuX8R1qwLtKiAfS47XkDu1MQajxDAhw__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
             ytId: "JBhW3zcm03U"
           }
         ]
@@ -394,22 +393,22 @@
         topics: [
           {
             title: "Solve A Linear Quadratic System Of Equations Lines And Parabolas",
-            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_oy8pq2cb/v/1/ev/4/flavorId/1_3yfn66bf/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX295OHBxMmNiL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyNn19fV19&Signature=JlN4jJRuF9yaKBySQ2o5Pd0BTVTs8QIuFgJFy7KVxGKPVcUSNjvtRtLVQ7G1psCIYDbbb2aEIl9p4r1VfnFyMg3Zp0J5irjn0ugiaKxZACWnz0jhTuCB~toGdyYCCbOKSapeksMYBbcE8-b33~8HeTQ5epiJ4yI8NVFfFbFdfFgW969EzMIHRJRY11gHG6NfbYjKtfAu7qpUdlUJNFIGazgGs~0Qziyla7IBpdU~fJcfWhZn1inwk7YTRO81geKfXDgj0ve26FuYFBNRT3saf5pegemQKCha4wkilXNufXG6nOj8viik22yeh9eMSJtiKs3auxz14s~pxraZp1nnZw__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
+            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_oy8pq2cb/v/1/ev/4/flavorId/1_cn280x6x/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xX295OHBxMmNiL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzI5NzgyM319fV19&Signature=eHC~gdst8aUOAk8jGgovtiMJTR45Xkh3XWo8K7aL5Cb6pi0ihi2~pwH5-a5SUoOH-E3Jqpj8BhLE8ZVYmLNtZLRP5Earv4FwikIYv3uY0QZtc-c0Xi50eGjc~PY669RlnGDMtx8WJyvfEla1K07ffuN9bTawvQ-qWk4UuCdBzCCVp~UtQGFir9KpqnYYv~LBxLMPRe0SfZINNQk14AoUu1gRyIniP--5-aSNnhyDeOpSKiCGI4Y329d9foUInDkRYgzcxeyNkLgtSNemoL37JfjqXzCj6XdRDIEFGF23eshGQq~P158Z2i7M18zpf2HU3Puz-ocOQaygS9rZORa5qg__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
             ytId: "rq5AjFs95qw"
           },
           {
             title: "Solve A Linear Quadratic System Of Equations By Graphing Lines And Parabolas",
-            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_84urvlxi/v/1/ev/4/flavorId/1_nf4zmxb3/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzg0dXJ2bHhpL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyNn19fV19&Signature=D5efRDI10BM0hhBdHYUorWwyVmzPrurN9zlHDdzwpG4IkIjOrg0c8PNIgDgMk1T9W9IBISMBEvqEyc4-0swIC7GbDOG0l7CC4ZaF5zDpZIPE9C1aUHIl5ion1uUQXndMVyRpsBdHXDhYeYqne9QD70WxXKm6MlVgAOGA3kpGxplfRVbvV~MgDKCiw84xv31puJeeJK6G3xZIHmAKvCpug7LQGsRrGyOjqZFprV8JiB3OotexsvoIXYT~8LfCGoq0qem92lcuRDgU838JpGRvyk3qTiG2q9Y3eKVpuJpwLycETFkHoGl4Hsf4IYp8VJYGeCcrfUMJCofUkKjBhRU~Ng__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
+            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_84urvlxi/v/1/ev/4/flavorId/1_nf4zmxb3/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzg0dXJ2bHhpL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzI5NzgyM319fV19&Signature=RxrufdSKSs2lXctVfmorAwDWxhkbJ04EEgDYJegeBcBd6u0lOEpdzw2v4R0SNt~LG4wsqHl-xO0-FIXqrExol~p8dgn1J693x8P8IV4I45dC6uos4OH1FnhtTKWIZwdZyM8qIZbOJX4ebhKvIhsWS10wCfjpAkM0ePOnpVzT7MTBECuapTDRk0KoDwEPgMx4NSJl6zLrjz-zmpjTig8oIJXgog~Xjbr3Ob~i77-hRIoDTCuzTg5vTKpmIiHghtcv~9XFs9dve~XAgo6YO~tARXJ622ss3psVjNzaKled0rHuDTHWnW7O60GdVZQ64MfOKBhlBfSKd2mX~Ho0SNfamA__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
             ytId: "kqIhCU2zZ8A"
           },
           {
             title: "Rational Root Theorem",
-            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_3t3az2hc/v/1/ev/4/flavorId/1_6f0swk73/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzN0M2F6MmhjL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyNH19fV19&Signature=D7c~E9K1xZKqOI1KRNQyjsomH2hk3qKlVPyVOCKDjeM-Todfv9cWM5YDzxp15VM2Ivn6jU0eSClkFbdnCd1CvKVetLxto-w1TXvao3cchlpz5gHiHkd1uxdv8pUmTLG885S0MFPA~XuHWA-LGulhH0n5MlfM25jZZT2ykePnFBHPxZr3Bd~igT87XVTkYumP31BnaUTuaF6Nvd2gP~YriaQKNQnH3B82ErC-YKZIng2ivhdd4WjIjSN9PLTEVmNqy9Nwoq0F1shVCKbQY-dVRoYrWQP3CMX2NFqu-j74X2gU2JbMbwF-QL0dDDB9LdjU94sE~y4p0~pDHty8~9ffwQ__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
+            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_3t3az2hc/v/1/ev/4/flavorId/1_6f0swk73/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzN0M2F6MmhjL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzI5NzgyMX19fV19&Signature=bbtcyaFmXQ~rEpvctXJcTYAxnlONadpt9B4BBghEQwc2kyTQW3tOyYNu4LxDdvfNiCYb20TF2HITT~BtZV22XQl2jv6UxUsiRcPUCEOoczAAKTw~fBKsKgxfXQJmv2H7IWBa2ShjHxupWoJ~qOp1-Ee2WjGJvfyZlRu7S2iDJElj2LqelPzdiz5i4XTEvNBwMOdgMVuucOSmiDAcnbeeTSb7gjfTtX9l6uIm5gjBu1qJfib-lbfeyb8rW4iKBwKjQOhC8OnazuXlvNYf7NTpRfbUfKT054gdezY6YX7EIe0LP2-xOaDEnXMO5UvAo17mS4ROQo58vp-wZ-mLXchGtA__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
             ytId: "Iaq7z7reznM"
           },
           {
             title: "Find Inverse Functions And Relations",
-            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_48btprmr/v/1/ev/4/flavorId/1_8yc32ys4/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzQ4YnRwcm1yL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzE5MzEyMX19fV19&Signature=ZAXZhzQmXzQTmYYZryoP13rASXpsl0PYxkRLX5dr8TcEPwq2g1LvovV94FS9Ov3u9XG3eXeaN7aY2pj5hhl0uHZFowqSmLwMQSV7WuyZmel7BIE-HzG-D~tgOnL8Btj6Pm~eh73~5mSI2T6SUylCR-Z7Wf5Nh0lgHN13T9XcdvVk1wm4cb0bs9dGFYkZPS17mnY8bjR1L0BTxxA3PT~zT1Y7ASmKk1uisCI2Fq8Q~H3samOA~geQOiqHyedZAkC9WcvVeR9mo3GazD72mXXDD-1GPhhVw97RgaJ6eVVRMvgAr-DBJkbnfwD39JKoBsvDpKTqUEgSBRoyGdXP5B1T~Q__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
+            ixl: "https://cfvod.kaltura.com/scf/hls/p/4764982/sp/476498200/serveFlavor/entryId/1_48btprmr/v/1/ev/4/flavorId/1_8yc32ys4/name/a.mp4/index.m3u8?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9jZnZvZC5rYWx0dXJhLmNvbS9zY2YvaGxzL3AvNDc2NDk4Mi9zcC80NzY0OTgyMDAvc2VydmVGbGF2b3IvZW50cnlJZC8xXzQ4YnRwcm1yL3YvMS9ldi80KiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5MzI5NzgxOX19fV19&Signature=VoFY3zzpqV9iThaASwAZ9QoMjkEfQR0yz6voXLUOGncj~XCclSfw0a79xX-HelSJzVblTcijPSK8tSPoc45PSsFj2R6uJZunFtIQXdkjelBx6VIEWyY81ZRKrpxbZc4GIUAyiyAfE45My21a0AOZLHvypRoSFcaas-2EJslhTKb3QgtJSaWZgdVEcp1kLF6Ird~J57sJm-9pD2pR5QZlcloXHLanKSjXrp6GPXMpkf5TUfwkKo0jkLA-gn4Q2~Q3vJlEfaRhS78QfqlaxXBdpgtvEMeXPa~LFMXRRhQZFNAeR6lsNZd01E7dITCSkqRO3K0hoPMiwZfjpUux2nBHJA__&Key-Pair-Id=APKAJT6QIWSKVYK3V34A",
             ytId: "W84lObmK48I"
           }
         ]
@@ -422,7 +421,7 @@
     const ixlPlayer = document.getElementById('ixlPlayer');
     const ytPlayer = document.getElementById('ytPlayer');
 
-    // Continuously save current video timestamp
+    // Automatically record playback progress
     ixlPlayer.addEventListener('timeupdate', () => {
       if (selectedTopic && currentMode === 'ixl') {
         localStorage.setItem('time_ixl_' + selectedTopic.title, ixlPlayer.currentTime);
@@ -522,7 +521,7 @@
           ixlPlayer.play().catch(() => {});
         }
       } else {
-        // Pause and reset IXL player
+        // Stop IXL player
         if (hlsPlayer) {
           hlsPlayer.destroy();
           hlsPlayer = null;
@@ -543,7 +542,7 @@
 
     buildSidebar();
     
-    // Auto select first topic
+    // Auto-select first item
     const firstTopic = modules[0].topics[0];
     const firstElement = document.querySelector('.topic-item');
     if (firstTopic && firstElement) {
